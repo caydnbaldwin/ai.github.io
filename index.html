@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AI Chatbot</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div>
+            <h1>AI Chatbot</h1>
+        </div>
+    </header>
+
+    <section id="chat-section">
+        <div class="container chat-container">
+            <div class="chat-history">
+                <h3>Chat History</h3>
+                <ul id="history-list">
+                    <!-- Chat history will be populated here -->
+                </ul>
+            </div>
+            <div class="chatbox">
+                <div class="chat-output" id="chat-output">
+                    <div class="message bot">Hello! How can I help you today?</div>
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="user-input" placeholder="Type your message here...">
+                    <button id="send-btn">Send</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div>
+            <p>Next Gen Intelligence © 2024. Leading AI Innovation.</p>
+        </div>
+    </footer>
+
+    <script>
+        const sendBtn = document.getElementById('send-btn');
+        const userInput = document.getElementById('user-input');
+        const chatOutput = document.getElementById('chat-output');
+        const historyList = document.getElementById('history-list');
+
+        sendBtn.addEventListener('click', () => {
+            let userMessage = userInput.value.trim();
+            if (userMessage) {
+                let userMsgDiv = document.createElement('div');
+                userMsgDiv.classList.add('message', 'user');
+                userMsgDiv.textContent = userMessage;
+                chatOutput.appendChild(userMsgDiv);
+
+                // Update Chat History
+                let historyItem = document.createElement('li');
+                historyItem.textContent = userMessage;
+                historyList.appendChild(historyItem);
+
+                userInput.value = '';
+
+                // Scroll to bottom of chat
+                chatOutput.scrollTop = chatOutput.scrollHeight;
+
+                // Simulate a bot response (replace this with actual chatbot logic)
+                setTimeout(() => {
+                    let botMsgDiv = document.createElement('div');
+                    botMsgDiv.classList.add('message', 'bot');
+                    botMsgDiv.textContent = "Great question! Let me check on that for you.";
+                    chatOutput.appendChild(botMsgDiv);
+                    chatOutput.scrollTop = chatOutput.scrollHeight;
+                }, 1000);
+            }
+        });
+
+        document.getElementById('user-input').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            sendBtn.click();
+        }
+    });
+
+    </script>
+</body>
+</html>
